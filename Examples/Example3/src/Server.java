@@ -9,6 +9,8 @@ import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
 public class Server {
 	Map<Communicator, PublicKey> keyRing;
 	ServerSocket serverSocket;
@@ -58,6 +60,7 @@ public class Server {
 			
 			byte[] decrypted = Utils.decrypt(keyRing.get(comm), data);
 			String message = new String(decrypted, StandardCharsets.UTF_8);
+			System.out.println(Base64.encode(data));
 			System.out.println(message);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
