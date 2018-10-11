@@ -25,7 +25,7 @@ public class Client {
 	
 	public void send(String message) {
 		byte[] data = message.getBytes(StandardCharsets.UTF_8);
-		byte[] encrypted = Utils.encrypt(rsaKeys.getPrivate(), data);
+		byte[] encrypted = Utils.encrypt(serverPublicKey, data);
 		comm.write(encrypted);
 		comm.close();
 	}

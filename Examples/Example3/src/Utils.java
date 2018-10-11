@@ -94,10 +94,10 @@ public class Utils {
 		return result;
 	}
 
-	public static byte[] encrypt(PrivateKey privateKey, byte[] plain) {
+	public static byte[] encrypt(PublicKey publicKey, byte[] plain) {
 		try {
 			Cipher cipher = Cipher.getInstance("RSA");
-			cipher.init(Cipher.ENCRYPT_MODE, privateKey);
+			cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 			return cipher.doFinal(plain);
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
 			e.printStackTrace();
@@ -112,10 +112,10 @@ public class Utils {
 		return null;
 	}
 
-	public static byte[] decrypt(PublicKey publicKey, byte[] encrypted) {
+	public static byte[] decrypt(PrivateKey privateKey, byte[] encrypted) {
 		try {
 			Cipher cipher = Cipher.getInstance("RSA");
-			cipher.init(Cipher.DECRYPT_MODE, publicKey);
+			cipher.init(Cipher.DECRYPT_MODE, privateKey);
 			return cipher.doFinal(encrypted);
 		} catch (BadPaddingException e) {
 			e.printStackTrace();

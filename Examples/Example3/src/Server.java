@@ -58,7 +58,7 @@ public class Server {
 			
 			Thread.sleep((int)(Math.random()*1000));
 			
-			byte[] decrypted = Utils.decrypt(keyRing.get(comm), data);
+			byte[] decrypted = Utils.decrypt(rsaKeys.getPrivate(), data);
 			String message = new String(decrypted, StandardCharsets.UTF_8);
 			System.out.println(Base64.encode(data));
 			System.out.println(message);
